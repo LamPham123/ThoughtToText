@@ -1,11 +1,43 @@
 <!DOCTYPE html>
-<html lang="en"></html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take a Break Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .notification {
+            text-align: center;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            border: none; 
+        }
+    </style>
 </head>
 <body>
-    this is so buns 
+
+<div class="notification">
+    <h1>Time to take a break?</h1>
+    <p>You've been watching quite a bit of videos 😜</p>
+    <button onclick="dismissNotification()">Dismiss</button>
+</div>
+
+<script type="text/javascript">
+function dismissNotification() {
+   document.querySelector('.notification').style.display = 'none';
+}
+</script>
+
 </body>
 </html>
