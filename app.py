@@ -8,7 +8,7 @@ import pickle
 import pandas as pd
 
 # Import functions from the utils module
-from utils import update_buffer, get_last_data, compute_band_powers, julia, create_custom_colormap
+from utils import update_buffer, get_last_data, compute_band_powers
 from pylsl import StreamInlet, resolve_byprop
 
 app = Flask(__name__)
