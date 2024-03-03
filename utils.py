@@ -11,7 +11,6 @@ Muse LSL Tools adapted from https://github.com/alexandrebarachant/muse-lsl/blob/
 
 from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
-import openai
 from scipy.signal import butter, lfilter, lfilter_zi
 
 
@@ -180,59 +179,3 @@ def get_last_data(data_buffer, newest_samples):
 
     return new_buffer
 
-
-# painting auxiliary funcs
-def julia(c, max_iter=100, width=800, height=600):
-    """
-    Define the Julia fractal function
-    """
-    x = np.linspace(-2, 2, width)
-    y = np.linspace(-1.5, 1.5, height)
-    X, Y = np.meshgrid(x, y)
-    Z = X + 1j * Y
-    img = np.zeros((height, width))
-
-    for i in range(max_iter):
-        Z = Z**2 + c
-        mask = np.abs(Z) < 1000
-        img += mask
-
-    return img
-
-
-def create_custom_colormap():
-    """
-    Define a custom colormap for more diverse colors
-    """
-    colors = [
-        (1, 0, 0),
-        (1, 0.5, 0),
-        (0, 1, 0),
-        (0, 0, 1),
-    ]  # Red to Orange to Green to Blue gradient
-    cmap_name = "custom_cmap"
-    cm = LinearSegmentedColormap.from_list(cmap_name, colors, N=256)
-    return cm
-
-
-def generate_response(prompt):
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=30,
-        n=1,
-        stop=None,
-        temperature=0.6,
-    )
-
-    return response.choices[0].text
-
-
-def generate_image(prompt):
-    response = openai.Image.create(
-        prompt=prompt,
-        n=1,
-        size="512x512",
-    )
-
-    return response["data"][0]["url"]
